@@ -1,0 +1,17 @@
+[git에서 github commit하는 법]
+1. git 다운받기
+2. github 계정 만들기
+3. 프로젝트에 사용할 새 파일 만들기
+ex: "C:\Users\User\aiffel\workplace"
+-> aiffel 이라는 폴더 만들고 그 안에 workplace라는 폴더 하나 더 만들기
+4. vsCode 접속해서 FILE-> open folder ->workplace 폴더 경로 선택
+5. vsCode 안에서 ctrl + shift + p → select default profile 검색 → Git bash 선택 
+ : 이러면 명령 프롬프트가 git bash로 바뀜
+6. 명령 프롬프트에 clone https://github.com/t2easure/ComputerProgramming2.git 
+라고 입력하기 
+
+[github에 push하는 법(업데이트)]
+7. workplace 폴더 안에 ComputerProgramming2 폴더가 생겼을 것이므로 그 폴더 안에 공유할 파일 넣기
+8. 명령 프롬프트에 cd ComputerProgramming2/ 입력하기
+9. git add . -> git commit -m 'new' -> git push 
+순서대로 입력하기 하면 업데이트 됨
