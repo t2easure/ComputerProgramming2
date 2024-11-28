@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib
+from matplotlib import rc
+
+matplotlib.rc('font', family='Malgun Gothic')
+plt.rcParams['axes.unicode_minus'] = False
 
 matplotlib.use('TkAgg')
 
