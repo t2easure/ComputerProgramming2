@@ -11,7 +11,7 @@ def main():
     dataframe = module_a.read_file(f"{file_name}.csv")
 
     subjects = module_a.subject_and_type(dataframe)
-    subjects = subjects.tolist()
+    subjects = subjects.tolist() 
     selected_subject = module_a.selectsubject(subjects)
     selected_subject_index = subjects.index(selected_subject) + 1
 
@@ -23,7 +23,12 @@ def main():
             selected_type = module_a.type(types)
             module_b.module_b(dataframe, selected_subject, selected_type, year=(file_name[:4]))
     else:
-        module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
+        types = module_a.typefromsubject(dataframe, selected_subject)
+        if len(types) > 0 and not dataframe[dataframe.iloc[:, 0] == selected_subject].iloc[:, 1].isna().all():
+            selected_type = module_a.type(types)
+            module_b.module_b(dataframe, selected_subject, selected_type, year=(file_name[:4]))
+        else:
+            module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
 
 if __name__ == "__main__":
     main()

@@ -17,6 +17,7 @@ def module_b(dataframe, subject, type_=None, year=None):
         subject_data = dataframe[dataframe.iloc[:, 0] == subject]
         title = f'{int(year) + 1} 수능 {subject} 점수 분포 (남자/여자)'
     
+    # 점수 범위를 5점 단위로 그룹화
     subject_data['표준점수_그룹'] = (subject_data["표준점수"] // 5) * 5
     grouped_data = subject_data.groupby("표준점수_그룹").sum()
     
