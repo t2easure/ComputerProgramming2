@@ -11,23 +11,19 @@ def main():
     dataframe = module_a.read_file(f"{file_name}.csv")
 
     subjects = module_a.subject_and_type(dataframe)
-    subjects = subjects.tolist()  # Convert to list to use list operations
+    subjects = subjects.tolist()
     selected_subject = module_a.selectsubject(subjects)
     selected_subject_index = subjects.index(selected_subject) + 1
 
-    # Check if year is 2020 and the subject should not have a type (e.g., 국어 with no type distinction)
-    if int(file_name[:4]) == 2020 and dataframe[dataframe.iloc[:, 0] == selected_subject].iloc[:, 1].isna().all():
-        module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
-    elif int(file_name[:4]) == 2020 and dataframe[dataframe.iloc[:, 0] == selected_subject].iloc[:, 1].nunique() == 1:
-        # If the subject has only one type in 2020, skip type selection
-        module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
-    else:
+    if int(file_name[:4]) == 2020:
         types = module_a.typefromsubject(dataframe, selected_subject)
-        if len(types) > 0:
+        if len(types) == 0 or dataframe[dataframe.iloc[:, 0] == selected_subject].iloc[:, 1].isna().all():
+            module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
+        else:
             selected_type = module_a.type(types)
             module_b.module_b(dataframe, selected_subject, selected_type, year=(file_name[:4]))
-        else:
-            module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
+    else:
+        module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
 
 if __name__ == "__main__":
     main()
