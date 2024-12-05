@@ -9,7 +9,7 @@ def subject_and_type(dataframe):
     return subjects
 
 def typefromsubject(dataframe, subject):
-    types = dataframe[dataframe.iloc[:, 0] == subject].iloc[:, 1].unique() 
+    types = dataframe[dataframe.iloc[:, 0] == subject].iloc[:, 1].dropna().unique() 
     return types
 
 def selectsubject(subjects):
