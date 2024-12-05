@@ -7,14 +7,14 @@ plt.rcParams['axes.unicode_minus'] = False
 
 matplotlib.use('TkAgg')
 
-def module_b(dataframe, subject, type_=None):
+def module_b(dataframe, subject, type_=None, year=None):
     plt.figure(figsize=(10, 6))
     if type_:
         subject_data = dataframe[(dataframe.iloc[:, 0] == subject) & (dataframe.iloc[:, 1] == type_)]
-        title = f'2024 수능 {subject} ({type_}) 점수 분포 (남자/여자)'
+        title = f'{int(year) + 1} 수능 {subject} ({type_}) 점수 분포 (남자/여자)'
     else:
         subject_data = dataframe[dataframe.iloc[:, 0] == subject]
-        title = f'2024 수능 {subject} 점수 분포 (남자/여자)'
+        title = f'{int(year) + 1} 수능 {subject} 점수 분포 (남자/여자)'
     
     standard_scores = subject_data["표준점수"]
     male_scores = subject_data["남자"].dropna()
@@ -28,4 +28,4 @@ def module_b(dataframe, subject, type_=None):
     plt.ylabel('학생 수')
     plt.legend()
     plt.grid(axis='y', linestyle='--')
-    plt.show() 
+    plt.show()
