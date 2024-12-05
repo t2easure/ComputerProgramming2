@@ -3,7 +3,8 @@ import module_b
 
 def main():
     file_name = 0
-    file_name = int(input("연도를 선택하세요 2020, 2021, 2022, 2023 중 택1\n"))
+    file_name = int(input("연도를 선택하세요\n1. 2020\n2. 2021\n3. 2022\n4. 2023\n중 택1 (번호로 입력하세요)\n"))
+    file_name = file_name+2019
     for i in range(4):
         if file_name == 2020+i:
             file_name = file_name*10000+1231
