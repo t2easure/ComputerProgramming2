@@ -2,7 +2,14 @@ import module_a
 import module_b
 
 def main():
-    dataframe = module_a.read_file("20231231.csv")
+    file_name = 0
+    file_name = int(input("연도를 선택하세요 2020, 2021, 2022, 2023 중 택1\n"))
+    for i in range(4):
+        if file_name == 2020+i:
+            file_name = file_name*10000+1231
+            break   
+    file_name = str(file_name) 
+    dataframe = module_a.read_file(f"{file_name}.csv")
 
     subjects = module_a.subject_and_type(dataframe)
     selected_subject = module_a.selectsubject(subjects)
