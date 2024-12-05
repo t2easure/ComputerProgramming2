@@ -11,15 +11,20 @@ def main():
     dataframe = module_a.read_file(f"{file_name}.csv")
 
     subjects = module_a.subject_and_type(dataframe)
+    subjects = subjects.tolist()
     selected_subject = module_a.selectsubject(subjects)
-    selected_subject_index = subjects.tolist().index(selected_subject) + 1
+    selected_subject_index = subjects.index(selected_subject) + 1
 
-    if selected_subject_index in [1, 2]:
+    if selected_subject_index in [1, 2] and int(file_name[:4]) != 2020:
         module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
     else:
         types = module_a.typefromsubject(dataframe, selected_subject)
-        selected_type = module_a.type(types) if len(types) > 0 else None
-        module_b.module_b(dataframe, selected_subject, selected_type, year=(file_name[:4]))
+        if len(types) > 0:
+            selected_type = module_a.type(types)
+            module_b.module_b(dataframe, selected_subject, selected_type, year=(file_name[:4]))
+        else:
+            module_b.module_b(dataframe, selected_subject, year=(file_name[:4]))
 
 if __name__ == "__main__":
     main()
+
